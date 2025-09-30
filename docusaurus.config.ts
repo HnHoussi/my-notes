@@ -8,7 +8,7 @@ const config: Config = {
     favicon: 'img/favicon.ico',
 
     url: 'https://HnHoussi.github.io', // change to your site URL
-    baseUrl: '/',
+    baseUrl: '/my-notes/',
 
     organizationName: 'HnHoussi', // GitHub username
     projectName: 'my-notes', // GitHub repo name
