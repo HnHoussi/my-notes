@@ -44,10 +44,11 @@ const config: Config = {
         },
 
         navbar: {
-            title: 'H-Notes',
+            title: 'Home',
             logo: {
                 alt: 'My Notes Logo',
                 src: 'img/HXH.png',
+                className: 'custom-logo',
             },
             items: [
                 {
@@ -66,7 +67,7 @@ const config: Config = {
 
         footer: {
             style: 'dark',
-            copyright: `© ${new Date().getFullYear()} My Notes.`,
+            copyright: `Made with Love © ${new Date().getFullYear()} HN Notes`,
         },
 
         prism: {

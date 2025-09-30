@@ -28,3 +28,15 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+/* Navbar logo customization */
+.navbar__brand .custom-logo {
+    width: 40px;       /* change width */
+    height: 40px;      /* optional: force height */
+    border-radius: 50%; /* makes it rounded */
+    object-fit: cover;  /* ensures logo scales nicely */
+}
+
+.footer {
+    background: #333131;
+}

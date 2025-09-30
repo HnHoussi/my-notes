@@ -1,7 +1,4 @@
-
-
-
-# React
+# ReactJS
 
 ## Create a new React app (Vite)
 

@@ -10,7 +10,7 @@ export default function Home() {
             <main className={styles.main}>
                 {/* Hero Section */}
                 <section className={styles.hero}>
-                    <h1 className={styles.title}>💻 Programming Cheatsheets</h1>
+                    <h1 className={styles.title}>Web Dev Cheatsheets</h1>
                     <p className={styles.subtitle}>
                         Frontend, Backend, and Project Guides for web development
                     </p>
@@ -24,13 +24,13 @@ export default function Home() {
                     <Link className={`${styles.card} ${styles.frontend}`} to="/docs/frontend/react">
                         <FaReact size={40} />
                         <h2>Frontend</h2>
-                        <p>React, Next.js, TypeScript — all frontend cheatsheets</p>
+                        <p>React, Next.js, TypeScript and many more ...</p>
                     </Link>
 
                     <Link className={`${styles.card} ${styles.backend}`} to="/docs/backend/nodejs">
                         <FaServer size={40} />
                         <h2>Backend</h2>
-                        <p>Node.js, ExpressJS, PostgreSQL, Symfony, API Platform</p>
+                        <p>Node.js, ExpressJS, PostgreSQL, Symfony, API Platform ...</p>
                     </Link>
 
                     <Link className={`${styles.card} ${styles.projects}`} to="/docs/projects/project1">

@@ -27,6 +27,11 @@
     text-decoration: none;
 }
 
+.cta:hover {
+    text-decoration: none;
+    color: var(--ifm-color-primary-dark);
+}
+
 .cards {
     display: flex;
     justify-content: center;
@@ -35,7 +40,7 @@
 }
 
 .card {
-    background: gray;
+    background: #333131;
     padding: 1.5rem;
     border-radius: 0.75rem;
     width: 250px;
@@ -52,17 +57,19 @@
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 12px rgba(0,0,0,0.15);
+    text-decoration: none;
 }
 
 /* Category-specific colors */
 .frontend {
-    border-top: 5px solid #61dafb; /* React Blue */
+    border-top: 5px solid #16a3ca; /* React Blue */
 }
 
 .backend {
-    border-top: 5px solid #f97316; /* Orange for Node/Server */
+    border-top: 5px solid #16f93c; /* Orange for Node/Server */
 }
 
 .projects {
-    border-top: 5px solid #10b981; /* Green for projects */
+    border-top: 5px solid #b94b10; /* Green for projects */
 }
+
