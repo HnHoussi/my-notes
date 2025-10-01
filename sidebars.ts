@@ -9,6 +9,7 @@ const sidebars: SidebarsConfig = {
                 'frontend/react',
                 'frontend/nextjs',
                 'frontend/typescript',
+                'frontend/angularjs',
             ],
         },
         {
