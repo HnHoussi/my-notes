@@ -40,7 +40,8 @@ const config: Config = {
         image: 'img/docusaurus-social-card.jpg',
 
         colorMode: {
-            respectPrefersColorScheme: true,
+                defaultMode: 'dark',   // or 'dark', whichever you prefer
+                respectPrefersColorScheme: false, // disables System mode
         },
 
         navbar: {
