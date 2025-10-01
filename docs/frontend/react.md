@@ -15,7 +15,7 @@ npm run dev
 
 ```jsx
 function Hello({ name }) {
-return <h1>Hello, {name}!</h1>;
+  return <h1>Hello, {name}!</h1>;
 }
 ```
 
@@ -23,7 +23,7 @@ return <h1>Hello, {name}!</h1>;
 
 ```jsx
 function Button({ text = "Click me" }) {
-return <button>{text}</button>;
+  return <button>{text}</button>;
 }
 ```
 
@@ -40,14 +40,14 @@ export default Hello;
 import { useState } from "react";
 
 function Counter() {
-const [count, setCount] = useState(0);
-
-return (
-<div>
-<p>{count}</p>
-<button onClick={() => setCount(count + 1)}>+</button>
-</div>
-);
+  const [count, setCount] = useState(0);
+  
+  return (
+    <div>
+      <p>{count}</p>
+      <button onClick={() => setCount(count + 1)}>+</button>
+    </div>
+  );
 }
 ```
 
@@ -67,8 +67,8 @@ const [value, setValue] = useState(initialValue);
 
 // useEffect
 useEffect(() => {
-console.log("Runs on mount & when dep changes");
-return () => console.log("Cleanup"); // optional
+  console.log("Runs on mount & when dep changes");
+  return () => console.log("Cleanup"); // optional
 }, [dep]);
 
 // useRef
@@ -86,9 +86,9 @@ const theme = useContext(ThemeContext);
 ```jsx
 const items = ["🍎", "🍌", "🍒"];
 <ul>
-{items.map((item, i) => (
-<li key={i}>{item}</li>
-))}
+  {items.map((item, i) => (
+    <li key={i}>{item}</li>
+  ))}
 </ul>
 ```
 
@@ -96,19 +96,19 @@ const items = ["🍎", "🍌", "🍒"];
 
 ```jsx
 function Form() {
-const [text, setText] = useState("");
-
-const handleSubmit = (e) => {
-e.preventDefault();
-alert(text);
-};
-
-return (
-<form onSubmit={handleSubmit}>
-<input value={text} onChange={(e) => setText(e.target.value)} />
-<button type="submit">Submit</button>
-</form>
-);
+  const [text, setText] = useState("");
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(text);
+  };
+  
+  return (
+    <form onSubmit={handleSubmit}>
+      <input value={text} onChange={(e) => setText(e.target.value)} />
+      <button type="submit">Submit</button>
+    </form>
+  );
 }
 ```
 
@@ -125,21 +125,21 @@ return (
 import { useEffect, useState } from "react";
 
 function Users() {
-const [users, setUsers] = useState([]);
-
-useEffect(() => {
-fetch("https://jsonplaceholder.typicode.com/users")
-.then((res) => res.json())
-.then(setUsers);
-}, []);
-
-return (
-<ul>
-{users.map((u) => (
-<li key={u.id}>{u.name}</li>
-))}
-</ul>
-);
+  const [users, setUsers] = useState([]);
+  
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/users")
+    .then((res) => res.json())
+    .then(setUsers);
+  }, []);
+  
+  return (
+    <ul>
+      {users.map((u) => (
+        <li key={u.id}>{u.name}</li>
+      ))}
+    </ul>
+  );
 }
 ```
 
@@ -153,17 +153,17 @@ npm install react-router-dom
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function App() {
-return (
-<BrowserRouter>
-<nav>
-<Link to="/">Home</Link> | <Link to="/about">About</Link>
-</nav>
-<Routes>
-<Route path="/" element={<Home />} />
-<Route path="/about" element={<About />} />
-</Routes>
-</BrowserRouter>
-);
+  return (
+    <BrowserRouter>
+      <nav>
+        <Link to="/">Home</Link> | <Link to="/about">About</Link>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 ```
 
@@ -173,8 +173,8 @@ return (
 
 ```jsx
 <>
-<Child1 />
-<Child2 />
+  <Child1 />
+  <Child2 />
 </>
 ```
 
@@ -182,25 +182,25 @@ return (
 
 ```jsx
 class ErrorBoundary extends React.Component {
-constructor(props) {
-super(props);
-this.state = { hasError: false };
-}
-
-static getDerivedStateFromError(error) {
-return { hasError: true };
-}
-
-componentDidCatch(error, errorInfo) {
-console.error(error, errorInfo);
-}
-
-render() {
-if (this.state.hasError) {
-return <h1>Something went wrong.</h1>;
-}
-return this.props.children;
-}
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+  
+  componentDidCatch(error, errorInfo) {
+    console.error(error, errorInfo);
+  }
+  
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+    return this.props.children;
+  }
 }
 ```
 
@@ -221,6 +221,6 @@ const memoizedCallback = useCallback(() => doSomething(a), [a]);
 
 ```jsx
 <ThemeContext.Provider value={theme}>
-<App />
+  <App />
 </ThemeContext.Provider>
 ```
