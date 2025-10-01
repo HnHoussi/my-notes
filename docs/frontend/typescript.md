@@ -1,7 +1,5 @@
 # TypeScript
 
----
-
 ## Basic Types
 
 ```ts
@@ -15,8 +13,6 @@ let nothing: void = undefined;
 let unique: unknown = "safer any";
 let neverHappens: never; // function that never returns
 ```
-
----
 
 ## Functions
 
@@ -32,8 +28,6 @@ function greet(name: string, age?: number, prefix: string = "Hi"): string {
   return `${prefix} ${name} (${age ?? "unknown"})`;
 }
 ```
-
----
 
 ## Interfaces & Types
 
@@ -58,8 +52,6 @@ type Status = "success" | "error" | "loading";
 type Worker = Person & { company: string };
 ```
 
----
-
 ## Classes
 
 ```ts
@@ -77,8 +69,6 @@ class Dog extends Animal {
 }
 ```
 
----
-
 ## Generics
 
 ```ts
@@ -95,8 +85,6 @@ interface ApiResponse<T> {
 }
 ```
 
----
-
 ## Utility Types
 
 ```ts
@@ -106,8 +94,6 @@ type ReadonlyUser = Readonly<Person>; // immutable
 type PickUser = Pick<Person, "name">; // only name
 type OmitUser = Omit<Person, "age">;  // everything except age
 ```
-
----
 
 ## Enums
 
@@ -122,8 +108,6 @@ enum Direction {
 let move: Direction = Direction.Up;
 ```
 
----
-
 ## Type Assertions & Guards
 
 ```ts
@@ -135,8 +119,6 @@ function isString(value: unknown): value is string {
   return typeof value === "string";
 }
 ```
-
----
 
 ## Modules
 
@@ -150,8 +132,6 @@ export function add(a: number, b: number) {
 import { add } from "./math";
 console.log(add(2, 3));
 ```
-
----
 
 ## Extras
 
