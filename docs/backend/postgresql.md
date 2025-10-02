@@ -168,9 +168,7 @@ SELECT id, name,
        RANK() OVER (ORDER BY created_at DESC) AS rank 
 FROM users;
 ```
-:::note
-
-## ⚡ Performance Tip
+:::⚡ Performance Tip
 
 Always use **EXPLAIN** before complex queries to analyze performance:
 
