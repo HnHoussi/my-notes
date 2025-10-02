@@ -169,9 +169,8 @@ SELECT id, name,
 FROM users;
 ```
 :::note
-###⚡ Performance Tip
 
-Always use **EXPLAIN** before complex queries to analyze performance:
+⚡ Performance Tip : always use **EXPLAIN** before complex queries to analyze performance:
 
 ```sql
 EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'test@example.com';
