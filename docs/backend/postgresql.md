@@ -1,4 +1,4 @@
-# PostgreSQL Cheat Sheet
+# PostgreSQL
 
 ## Connection
 
@@ -168,7 +168,8 @@ SELECT id, name,
        RANK() OVER (ORDER BY created_at DESC) AS rank 
 FROM users;
 ```
-:::⚡ Performance Tip
+:::note
+###⚡ Performance Tip
 
 Always use **EXPLAIN** before complex queries to analyze performance:
 
