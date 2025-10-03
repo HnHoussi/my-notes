@@ -1,4 +1,4 @@
-# Angular
+# Angular.js
 
 ## Project Setup
 
@@ -14,11 +14,28 @@ ng generate s xyz  # generate service
 
 ```
 src/
- ├── app/
- │    ├── app.component.ts     # Component logic
- │    ├── app.component.html   # Template
- │    ├── app.component.css    # Styles
- │    └── app.module.ts        # Root module
+ ├── app/                        # Application source
+ │    ├── app.component.ts       # Root component logic
+ │    ├── app.component.html     # Root template
+ │    ├── app.component.css      # Root styles
+ │    ├── app.module.ts          # Root module
+ │    ├── app-routing.module.ts  # (Optional) Routing module
+ │    └── components/            # Feature components
+ │         └── example/          
+ │              ├── example.component.ts
+ │              ├── example.component.html
+ │              ├── example.component.css
+ │              └── example.component.spec.ts
+ │
+ ├── assets/                     # Static assets (images, icons…)
+ ├── environments/               # Environment configs
+ │    ├── environment.ts         # Default (dev)
+ │    └── environment.prod.ts    # Production
+ │
+ ├── index.html                  # Main HTML file
+ ├── main.ts                     # Entry point (bootstraps AppModule)
+ ├── styles.css                  # Global styles
+ └── polyfills.ts                # Polyfills for browser compatibility
 ```
 
 ## Component Basics
