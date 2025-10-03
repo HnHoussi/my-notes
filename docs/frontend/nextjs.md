@@ -1,6 +1,5 @@
 # Next.js
 
-
 ## Installation
 
 ### Create a new Next.js app
@@ -20,8 +19,6 @@ Options:
 - ✅ ESLint
 - ✅ Tailwind (optional)
 - ✅ App Router (Next.js 13+) or Pages Router (legacy)
-
----
 
 ## Project Structure
 
@@ -64,8 +61,6 @@ export default function About() {
   return <h1>About Page</h1>
 }
 ```
-
----
 
 ### Pages Router (Legacy)
 ```tsx
@@ -181,18 +176,6 @@ import Image from "next/image";
 <Image src="/me.png" width={200} height={200} alt="Me" />
 ```
 
-## Deployment
-
-### Vercel (recommended)
-```bash
-npm run build
-npm start
-```
-Deploy via:
-```bash
-vercel
-```
-
 ### Custom server
 ```bash
 npm run build
@@ -210,8 +193,9 @@ npm start        # Start production server
 npm run lint     # Run ESLint
 ```
 
+## ⚡ Tips & Best Practices
+
 :::note
-⚡ **Tips**
 - Use the **App Router** for new projects (better layouts, server components).
 - Always prefix public env vars with `NEXT_PUBLIC_`.
 - Use `Image` and `Link` from Next.js for optimization.
