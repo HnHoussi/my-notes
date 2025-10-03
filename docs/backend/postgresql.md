@@ -168,9 +168,11 @@ SELECT id, name,
        RANK() OVER (ORDER BY created_at DESC) AS rank 
 FROM users;
 ```
-:::note
 
-⚡ Performance Tip : always use **EXPLAIN** before complex queries to analyze performance:
+## ⚡ Tips & Best Practices
+
+:::note
+Always use **EXPLAIN** before complex queries to analyze performance:
 
 ```sql
 EXPLAIN ANALYZE SELECT * FROM users WHERE email = 'test@example.com';
