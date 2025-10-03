@@ -1,4 +1,4 @@
-# ReactJS
+# React.js
 
 ## Create a new React app (Vite)
 
@@ -7,6 +7,25 @@ npm create vite@latest my-app --template react
 cd my-app
 npm install
 npm run dev
+```
+
+## Project Structure
+
+```
+my-app/
+├─ public/ # Static files (favicon, images…)
+├─ src/
+│ ├─ assets/ # Images, fonts, static assets
+│ ├─ components/ # Reusable UI components
+│ ├─ pages/ # Page-level components (if using routing)
+│ ├─ hooks/ # Custom React hooks
+│ ├─ context/ # React Context providers
+│ ├─ App.jsx # Root component
+│ ├─ main.jsx # Entry point
+│ └─ index.css # Global styles
+├─ package.json
+├─ vite.config.js
+└─ README.md
 ```
 
 ## Components
@@ -224,3 +243,23 @@ const memoizedCallback = useCallback(() => doSomething(a), [a]);
   <App />
 </ThemeContext.Provider>
 ```
+
+## ⚡ Tips & Best Practices
+
+:::note
+- **Keep components small & focused** → One component = one responsibility.  
+- **Use functional components + hooks** instead of class components.  
+- **Always use keys when rendering lists** → Prefer unique IDs, not array indexes.  
+- **Use `React.StrictMode`** in development for highlighting potential issues.  
+- **Avoid prop drilling** → Use Context or state management libraries.  
+- **Memoize expensive computations** → `useMemo` & `useCallback`.  
+- **Lazy load routes/components** → `React.lazy` + `Suspense` for better performance.  
+- **Error boundaries** → Catch runtime UI errors gracefully.  
+- **Separate UI & business logic** → Use custom hooks (`useFetch`, `useAuth`, etc.).  
+- **Use environment variables** → Don’t hardcode API keys. (`import.meta.env` in Vite).  
+- **Accessibility first** → Use semantic HTML (`<button>` instead of `<div onClick>`).  
+- **Testing** → Use React Testing Library + Jest for components.  
+- **Performance** → Profile with React DevTools & avoid unnecessary re-renders.  
+- **Code splitting** → Vite and Next.js handle this automatically, but dynamic imports help.  
+- **Consistency** → Follow a clear folder structure (`components/`, `hooks/`, `pages/`).  
+:::
