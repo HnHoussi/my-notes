@@ -216,3 +216,22 @@ submit() {
   <button type="submit">Submit</button>
 </form>
 ```
+
+## ⚡ Tips & Best Practices
+
+:::note
+- **Keep components small & focused** → One component = one responsibility.  
+- **Use feature modules** → Organize related components, services, and routes.  
+- **Prefer OnPush change detection** → Improves performance for large apps.  
+- **Use `async` pipe** → Avoid manual subscription management in templates.  
+- **Lazy load routes/modules** → Improves initial load time.  
+- **Use services for shared state** → Avoid unnecessary parent-child prop drilling.  
+- **Always unsubscribe from Observables** → Use `takeUntil` or `async` pipe.  
+- **Use environment variables** → Store API URLs and secrets in `environments/`.  
+- **Consistent folder structure** → Keep `components/`, `services/`, `pipes/`, `models/` organized.  
+- **Forms** → Use reactive forms for complex validation, template-driven for simple forms.  
+- **HTTP** → Use interceptors for auth tokens and error handling.  
+- **Styling** → Use Angular's `ViewEncapsulation` to avoid style leaks.  
+- **Testing** → Use Jasmine/Karma or Jest for unit testing components and services.  
+- **Accessibility** → Use semantic HTML, ARIA labels, and proper focus management.  
+:::
