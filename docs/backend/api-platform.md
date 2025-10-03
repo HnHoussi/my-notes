@@ -265,18 +265,15 @@ security:
 
 Login endpoint: `POST /login_check`
 
-
 ## Testing the API
 
 - Swagger UI → `/api`
 - GraphQL Playground → `/graphql`
 - JSON:API / Hydra supported out of the box.
 
----
+## ⚡ Tips & Best Practices
 
 :::note
-
-⚡ **Tips**
 - Use `EXPLAIN` in SQL to optimize performance.
 - Always configure **serialization groups** for proper input/output control.
 - Use **custom DataProviders & DataPersisters** when default CRUD is not enough.
