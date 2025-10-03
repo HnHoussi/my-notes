@@ -33,7 +33,6 @@ my-express-app/
 ├─ .env                # Environment variables
 ├─ package.json
 └─ index.js            # Main server entry point
-
 ```
 
 ## Basic Routing
