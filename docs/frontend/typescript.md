@@ -162,3 +162,22 @@ namespace Utils {
 
 Utils.log("Hello");
 ```
+
+## ⚡ Tips & Best Practices
+
+:::note
+- **Use strict mode** → Enable `"strict": true` in `tsconfig.json` for safer code.  
+- **Prefer `unknown` over `any`** → Forces type checking before using a value.  
+- **Use interfaces for public API shapes** → Use `type` for unions, intersections, and utility types.  
+- **Readonly & const** → Prevent accidental mutations of data.  
+- **Optional chaining & nullish coalescing** → Use `?.` and `??` for safer access to optional values.  
+- **Use generics** → Make functions and classes flexible while maintaining type safety.  
+- **Utility types** → Use `Partial`, `Pick`, `Omit`, `Readonly` to avoid repetitive typings.  
+- **Type guards** → Always narrow `unknown` or union types before using them.  
+- **Enums vs union types** → Use union string types for simple cases, enums for more structured constants.  
+- **Keep modules small & focused** → One module = one responsibility.  
+- **Prefer `const` for variables that don’t change** → Helps prevent unintended mutations.  
+- **Avoid `any` unless absolutely necessary** → Keeps your code safe and maintainable.  
+- **Use consistent naming conventions** → CamelCase for variables, PascalCase for types/classes.  
+- **Testing & tooling** → Use `tsc --noEmit` or `eslint` to catch type errors early.  
+:::
