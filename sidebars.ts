@@ -32,7 +32,6 @@ const sidebars: SidebarsConfig = {
                         'symfony/view',
                         'symfony/controller',
                         'symfony/form',
-                        'symfony/routing',
                         'symfony/services',
                         'symfony/security',
                       ],
