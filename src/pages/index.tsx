@@ -33,7 +33,7 @@ export default function Home() {
                         <p>Node.js, ExpressJS, PostgreSQL, Symfony, API Platform ...</p>
                     </Link>
 
-                    <Link className={`${styles.card} ${styles.projects}`} to="/docs/projects/project1">
+                    <Link className={`${styles.card} ${styles.projects}`} to="/docs/projects/cv-ai-assistant">
                         <FaProjectDiagram size={40} />
                         <h2>Projects</h2>
                         <p>Step-by-step project guides and practical tutorials</p>
