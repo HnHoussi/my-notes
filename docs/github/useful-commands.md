@@ -94,6 +94,27 @@ git push -u origin main
 
 ---
 
+## Rename a branch
+
+```bash
+# Rename the current branch
+git branch -m new-branch-name
+
+# OR rename a specific branch
+git branch -m old-branch-name new-branch-name
+
+# Push the new branch name to remote
+git push origin -u new-branch-name
+
+# Delete the old branch from the remote
+git push origin --delete old-branch-name
+
+# Update your local HEAD to track the new remote branch (optional)
+git branch --set-upstream-to=origin/new-branch-name
+```
+
+---
+
 ## Creating and Switching Branches
 
 Useful when starting new features or bug fixes.
