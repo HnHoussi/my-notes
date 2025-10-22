@@ -219,31 +219,80 @@ git rebase -i HEAD~3
 
 ---
 
-## Undo Mistakes (Safely)
+# Merge vs Rebase (Understanding the Difference)
 
-Recover from common Git errors.
-
-```bash
-# Unstage a file (remove from 'git add')
-git reset HEAD file.txt
-
-# Undo the last commit but keep your changes
-git reset --soft HEAD~1
-
-# Discard all local changes (⚠️ irreversible)
-git checkout -- file.txt
-```
+A clear explanation of when to use `merge` or `rebase` in real projects.
 
 ---
 
-## Clean Up Old Branches
+## What They Both Do
 
-Keep your repository organized by deleting merged branches.
+Both commands **combine changes from one branch into another**, but in **different ways**.
+
+| Command | What it does | Creates merge commit? | Rewrites history? | Looks clean? |
+|----------|---------------|----------------------|--------------------|--------------|
+| `merge` | Combines both histories | ✅ Yes | ❌ No | ❌ Messier |
+| `rebase` | Replays commits on top of another branch | ❌ No | ✅ Yes | ✅ Linear |
+
+---
+
+## Example: `merge`
 
 ```bash
-# Delete a local branch
-git branch -d feature/your-feature-name
-
-# Delete a remote branch
-git push origin --delete feature/your-feature-name
+git checkout main
+git merge feature
 ```
+
+**Resulting history:**
+```
+A---B---C--------M
+     \          /
+      D---E---- 
+```
+✅ Safe for shared branches  
+❌ Creates a merge commit (`M`) and keeps full history
+
+---
+
+## Example: `rebase`
+
+```bash
+git checkout feature
+git rebase main
+```
+
+**Resulting history:**
+```
+A---B---C---D'---E'
+```
+✅ Clean, linear history  
+⚠️ Rewrites commits (`D`, `E` become `D'`, `E'`), so don’t use it on shared branches
+
+---
+
+## Recommended Workflow
+
+1. Work on your **own feature branch**  
+2. Keep it up to date using rebase:  
+   ```bash
+   git fetch origin
+   git rebase origin/main
+   ```
+3. Merge it back into main safely:  
+   ```bash
+   git checkout main
+   git merge feature
+   ```
+
+---
+
+## 🧠 TL;DR
+
+| Situation | Recommended |
+|------------|--------------|
+| Local feature branch (before push) | `rebase` |
+| Shared branch (`main`, `dev`) | `merge` |
+| Clean up commits before merge | `rebase -i` |
+| Combine final work safely | `merge` |
+
+---
