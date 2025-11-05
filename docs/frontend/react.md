@@ -1,4 +1,4 @@
-# React.js Cheat Sheet (Arrow Function Style + Detailed Hooks)
+# React.js
 
 ## Create a new React app (Vite)
 
@@ -248,7 +248,7 @@ const useFetch = (url) => {
 ## Lists & Keys
 
 ```jsx
-const items = ["🍎", "🍌", "🍒"];
+const items = ["A", "B", "C"];
 const List = () => (
   <ul>
     {items.map((item, i) => (
