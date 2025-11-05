@@ -522,6 +522,7 @@ const ThemeContext = createContext<Theme>({ color: "blue" });
 
 ## ⚡ Tips & Best Practices
 
+:::note
 - Keep components small & focused.  
 - Prefer functional components + hooks.  
 - Always use unique keys in lists.  
@@ -542,3 +543,4 @@ const ThemeContext = createContext<Theme>({ color: "blue" });
 - Extend built-in types for elements (`ButtonHTMLAttributes`, etc.).
 - Avoid using `any`. Use `unknown` or a specific type instead.
 - Define **custom hooks** with proper generic types.
+:::
