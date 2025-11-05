@@ -62,14 +62,18 @@
 
 /* Category-specific colors */
 .frontend {
-    border-top: 5px solid #16a3ca; /* React Blue */
+    border-top: 5px solid #16a3ca;
 }
 
 .backend {
-    border-top: 5px solid #16f93c; /* Orange for Node/Server */
+    border-top: 5px solid #16f93c;
 }
 
 .projects {
-    border-top: 5px solid #b94b10; /* Green for projects */
+    border-top: 5px solid #b94b10;
+}
+
+.tests {
+    border-top: 5px solid #951595;
 }
 

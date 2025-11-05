@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
-import { FaReact, FaServer, FaProjectDiagram } from 'react-icons/fa';
+import {FaReact, FaServer, FaProjectDiagram, FaCheck} from 'react-icons/fa';
 import styles from './index.module.css';
 
 export default function Home() {
@@ -33,11 +33,18 @@ export default function Home() {
                         <p>Node.js, ExpressJS, PostgreSQL, Symfony, API Platform ...</p>
                     </Link>
 
+                    <Link className={`${styles.card} ${styles.tests}`} to="/docs/test/test-types">
+                        <FaCheck size={40} />
+                        <h2>Testing</h2>
+                        <p>A comprehensive testing cheat sheet</p>
+                    </Link>
+
                     <Link className={`${styles.card} ${styles.projects}`} to="/docs/projects/cv-ai-assistant">
                         <FaProjectDiagram size={40} />
                         <h2>Projects</h2>
-                        <p>Step-by-step project guides and practical tutorials</p>
+                        <p>Step-by-step project guides</p>
                     </Link>
+
                 </section>
             </main>
         </Layout>
