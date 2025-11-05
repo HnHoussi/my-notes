@@ -1,4 +1,4 @@
-# React.js
+# React.js Cheat Sheet (Arrow Function Style + Detailed Hooks)
 
 ## Create a new React app (Vite)
 
@@ -13,37 +13,39 @@ npm run dev
 
 ```
 my-app/
-├─ public/ # Static files (favicon, images…)
+├─ public/        # Static files (favicon, images…)
 ├─ src/
-│ ├─ assets/ # Images, fonts, static assets
-│ ├─ components/ # Reusable UI components
-│ ├─ pages/ # Page-level components (if using routing)
-│ ├─ hooks/ # Custom React hooks
-│ ├─ context/ # React Context providers
-│ ├─ App.jsx # Root component
-│ ├─ main.jsx # Entry point
-│ └─ index.css # Global styles
+│ ├─ assets/      # Images, fonts, static assets
+│ ├─ components/  # Reusable UI components
+│ ├─ pages/       # Page-level components (if using routing)
+│ ├─ hooks/       # Custom React hooks
+│ ├─ context/     # React Context providers
+│ ├─ App.jsx      # Root component
+│ ├─ main.jsx     # Entry point
+│ └─ index.css    # Global styles
 ├─ package.json
 ├─ vite.config.js
 └─ README.md
 ```
 
+---
+
 ## Components
 
-### Functional Component
+### Functional Component (Arrow Function)
 
 ```jsx
-function Hello({ name }) {
+const Hello = ({ name }) => {
   return <h1>Hello, {name}!</h1>;
-}
+};
 ```
 
 ### Props with Default Value
 
 ```jsx
-function Button({ text = "Click me" }) {
+const Button = ({ text = "Click me" }) => {
   return <button>{text}</button>;
-}
+};
 ```
 
 ### Export / Import
@@ -53,139 +55,234 @@ export default Hello;
 // import Hello from "./Hello";
 ```
 
+---
+
 ## State & Events
 
 ```jsx
 import { useState } from "react";
 
-function Counter() {
+const Counter = () => {
   const [count, setCount] = useState(0);
-  
+
   return (
     <div>
       <p>{count}</p>
       <button onClick={() => setCount(count + 1)}>+</button>
     </div>
   );
-}
+};
 ```
 
-**💡 Tip:** State updates are asynchronous — always use the setter (`setCount`) to update values.
+**💡 Tip:**  
+- State updates are asynchronous.  
+- When updating based on the previous state, pass a function:  
+  ```jsx
+  setCount(prev => prev + 1);
+  ```
 
 ---
 
-## 🧩 Common Patterns
+## Common Patterns
 
-* **Lifting state up** → Keep state in the nearest common parent.
-* **Composition > Inheritance** → Use components inside each other, not inheritance.
-* **Custom hooks** → Extract reusable logic (`useFetch`, `useAuth`, etc.).
+- **Lifting state up** → Keep state in the nearest common parent.  
+- **Composition > Inheritance** → Use components inside each other.  
+- **Custom hooks** → Extract reusable logic (`useFetch`, `useAuth`, etc.).  
 
 ---
 
-## React Hooks
-
-Hooks are functions that let you “hook into” React features like state, lifecycle, and context.
+## React Hooks (Detailed)
 
 ### useState – Local Component State
-**Use when:** You need to track data that changes inside a component (e.g., input value, counter).
 
 ```jsx
 const [count, setCount] = useState(0);
 setCount(count + 1);
 ```
 
+**Use when:** You need reactive local state inside a component.
+
+💡 **Tips:**
+- Works with primitive and complex values.
+- Use function updater form for derived state:
+  ```jsx
+  setCount(prev => prev + 1);
+  ```
+
+---
+
 ### useEffect – Side Effects
-**Use when:** You need to perform actions *after render* (e.g., fetching data, event listeners, timers).
 
 ```jsx
+import { useEffect } from "react";
+
 useEffect(() => {
   console.log("Component mounted or updated");
-  return () => console.log("Cleanup on unmount");
+  return () => console.log("Cleanup");
 }, [dependency]);
 ```
 
+**Use when:** Fetching data, event listeners, timers.
+
+💡 **Tips:**
+- `[]` → run only once.  
+- `[dep]` → run when `dep` changes.  
+- No array → run on every render.  
+
+---
+
 ### useRef – Mutable References
-**Use when:** You need to access or store a DOM element or mutable value that doesn’t trigger re-renders.
 
 ```jsx
+import { useRef, useEffect } from "react";
+
 const inputRef = useRef();
-useEffect(() => inputRef.current.focus(), []);
+
+useEffect(() => {
+  inputRef.current.focus();
+}, []);
+
 <input ref={inputRef} />;
 ```
 
+**Use when:** Accessing DOM elements or storing mutable values that don’t trigger re-renders.
+
+---
+
 ### useContext – Shared Global Data
-**Use when:** You want to share data (like theme or user info) across components without prop drilling.
 
 ```jsx
+import { createContext, useContext } from "react";
+
 const ThemeContext = createContext("light");
-const theme = useContext(ThemeContext);
+
+const Component = () => {
+  const theme = useContext(ThemeContext);
+  return <div className={theme}>Theme: {theme}</div>;
+};
 ```
+
+**Use when:** Sharing global data (theme, auth, user).
+
+---
 
 ### useReducer – Complex State Logic
-**Use when:** You have multiple related state updates (e.g., form state, counters with conditions).
 
 ```jsx
-const [state, dispatch] = useReducer(reducer, initialState);
-dispatch({ type: "increment" });
+import { useReducer } from "react";
+
+const reducer = (state, action) => {
+  switch(action.type) {
+    case "increment": return { count: state.count + 1 };
+    case "decrement": return { count: state.count - 1 };
+    default: return state;
+  }
+};
+
+const Counter = () => {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <>
+      <p>{state.count}</p>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+    </>
+  );
+};
 ```
+
+---
 
 ### useMemo – Memoize Expensive Computations
-**Use when:** A function or value is costly to compute, and you only want to recalculate when dependencies change.
 
 ```jsx
-const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+import { useMemo } from "react";
+
+const expensiveValue = useMemo(() => {
+  console.log("Computing...");
+  return someHeavyComputation(a, b);
+}, [a, b]);
 ```
+
+**Use when:** Avoid recalculating heavy computations unless dependencies change.
+
+---
 
 ### useCallback – Memoize Functions
-**Use when:** You pass functions as props and want to prevent unnecessary re-renders.
 
 ```jsx
-const handleClick = useCallback(() => setCount(c => c + 1), []);
+import { useCallback } from "react";
+
+const handleClick = useCallback(() => {
+  setCount(c => c + 1);
+}, []);
 ```
+
+**Use when:** Passing stable function references to child components.
+
+---
 
 ### Custom Hooks
-**Use when:** You need to reuse logic (like fetching data) across multiple components.
 
 ```jsx
-function useFetch(url) {
+import { useState, useEffect } from "react";
+
+const useFetch = (url) => {
   const [data, setData] = useState(null);
+
   useEffect(() => {
-    fetch(url).then(r => r.json()).then(setData);
+    fetch(url)
+      .then(res => res.json())
+      .then(setData);
   }, [url]);
+
   return data;
-}
+};
 ```
+
+**Use when:** Reusing logic like fetching, auth, local storage.
+
+---
 
 ## Lists & Keys
 
 ```jsx
 const items = ["🍎", "🍌", "🍒"];
-<ul>
-  {items.map((item, i) => (
-    <li key={i}>{item}</li>
-  ))}
-</ul>
+const List = () => (
+  <ul>
+    {items.map((item, i) => (
+      <li key={i}>{item}</li>
+    ))}
+  </ul>
+);
 ```
+
+---
 
 ## Controlled Forms
 
 ```jsx
-function Form() {
+import { useState } from "react";
+
+const Form = () => {
   const [text, setText] = useState("");
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert(text);
   };
-  
+
   return (
     <form onSubmit={handleSubmit}>
-      <input value={text} onChange={(e) => setText(e.target.value)} />
+      <input value={text} onChange={e => setText(e.target.value)} />
       <button type="submit">Submit</button>
     </form>
   );
-}
+};
 ```
+
+---
 
 ## Conditional Rendering
 
@@ -194,29 +291,31 @@ function Form() {
 {count > 0 && <p>You have {count} items</p>}
 ```
 
+---
+
 ## Fetching Data
 
 ```jsx
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-function Users() {
+const Users = () => {
   const [users, setUsers] = useState([]);
-  
+
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(setUsers);
   }, []);
-  
+
   return (
     <ul>
-      {users.map((u) => (
-        <li key={u.id}>{u.name}</li>
-      ))}
+      {users.map(u => <li key={u.id}>{u.name}</li>)}
     </ul>
   );
-}
+};
 ```
+
+---
 
 ## React Router (v6+)
 
@@ -227,24 +326,25 @@ npm install react-router-dom
 ```jsx
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <nav>
-        <Link to="/">Home</Link> | <Link to="/about">About</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </BrowserRouter>
-  );
-}
+const App = () => (
+  <BrowserRouter>
+    <nav>
+      <Link to="/">Home</Link> | <Link to="/about">About</Link>
+    </nav>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
+    </Routes>
+  </BrowserRouter>
+);
 ```
+
+---
 
 ## Additional Concepts
 
 ### Fragments
+
 ```jsx
 <>
   <Child1 />
@@ -252,7 +352,8 @@ function App() {
 </>
 ```
 
-### Error Boundaries
+### Error Boundaries (Class Required)
+
 ```jsx
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -266,40 +367,178 @@ class ErrorBoundary extends React.Component {
     console.error(error, errorInfo);
   }
   render() {
-    if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
-    }
+    if (this.state.hasError) return <h1>Something went wrong.</h1>;
     return this.props.children;
   }
 }
 ```
 
 ### React.memo
+
 ```jsx
 const MemoizedComponent = React.memo(Component);
 ```
 
 ### Context with Provider
+
 ```jsx
 <ThemeContext.Provider value={theme}>
   <App />
 </ThemeContext.Provider>
 ```
 
+---
+
+
+## TypeScript in React — Interfaces & Props
+
+When using TypeScript (`.tsx` files), you can **define props and state types** using either `interface` or `type`.
+
+### Defining Props with an Interface
+
+```tsx
+interface ButtonProps {
+  text: string;             // required string prop
+  onClick?: () => void;     // optional function prop
+}
+
+const Button = ({ text, onClick }: ButtonProps) => {
+  return <button onClick={onClick}>{text}</button>;
+};
+```
+
+💡 **Tips:**
+- `React.FC` (or `React.FunctionComponent`) is optional but helps define `children` automatically.
+- `onClick?` means this prop is optional.
+- You can add **default values**:
+  ```tsx
+  const Button: React.FC<ButtonProps> = ({ text = "Click", onClick }) => ...
+  ```
+
+---
+
+### Using `type` Instead of `interface`
+
+```tsx
+type CardProps = {
+  title: string;
+  content?: string;
+};
+
+const Card = ({ title, content }: CardProps) => (
+  <div>
+    <h3>{title}</h3>
+    {content && <p>{content}</p>}
+  </div>
+);
+```
+
+ **When to prefer `type`:**
+- You need unions or intersections.
+- You want shorter inline definitions.
+
+ **When to prefer `interface`:**
+- You want to extend props or reuse across components.
+
+---
+
+### Extending Props (Composition)
+
+```tsx
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+}
+
+const Input = ({ label, ...props }: InputProps) => (
+  <label>
+    {label}
+    <input {...props} />
+  </label>
+);
+```
+
+ Great for wrapping native elements like `<input>`, `<button>`, etc.
+
+---
+
+### Children Prop (ReactNode)
+
+```tsx
+import { ReactNode } from "react";
+
+interface LayoutProps {
+  children: ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps) => (
+  <main>{children}</main>
+);
+```
+
+ Always type `children` as `ReactNode` — it can be strings, numbers, JSX, or arrays of them.
+
+---
+
+### Example – Putting It All Together
+
+```tsx
+interface UserCardProps {
+  name: string;
+  age?: number;
+  onSelect?: (name: string) => void;
+}
+
+const UserCard: React.FC<UserCardProps> = ({ name, age, onSelect }) => (
+  <div onClick={() => onSelect?.(name)}>
+    <h2>{name}</h2>
+    {age && <p>Age: {age}</p>}
+  </div>
+);
+```
+
+Fully typed props, with optional callback and conditional rendering.
+
+---
+
+### Bonus: Typed useState, useRef, and Context
+
+```tsx
+// useState
+const [count, setCount] = useState<number>(0);
+
+// useRef
+const inputRef = useRef<HTMLInputElement>(null);
+
+// useContext
+interface Theme {
+  color: string;
+}
+const ThemeContext = createContext<Theme>({ color: "blue" });
+```
+
+ Always specify the generic type when the initial value doesn’t give a clear type.
+
+---
+
 ## ⚡ Tips & Best Practices
 
-- **Keep components small & focused** → One component = one responsibility.  
-- **Prefer functional components + hooks** instead of class components.  
-- **Always use keys when rendering lists** → Prefer unique IDs.  
-- **Use `React.StrictMode`** in development to catch potential issues.  
-- **Avoid prop drilling** → Use Context or state management libraries.  
-- **Memoize expensive computations** → `useMemo` & `useCallback`.  
-- **Lazy load routes/components** → `React.lazy` + `Suspense`.  
-- **Error boundaries** → Catch runtime UI errors gracefully.  
-- **Separate UI & logic** → Use custom hooks for data fetching.  
-- **Use environment variables** → (`import.meta.env` in Vite).  
-- **Accessibility first** → Use semantic HTML (`<button>` > `<div onClick>`).  
-- **Test components** → React Testing Library + Jest.  
-- **Profile performance** → React DevTools.  
-- **Consistent structure** → `components/`, `hooks/`, `pages/`.  
-
+- Keep components small & focused.  
+- Prefer functional components + hooks.  
+- Always use unique keys in lists.  
+- Use `React.StrictMode` in dev.  
+- Avoid prop drilling → use Context.  
+- Memoize computations → `useMemo`, `useCallback`.  
+- Lazy load routes/components → `React.lazy` + `Suspense`.  
+- Use Error Boundaries.  
+- Separate UI & logic → use custom hooks.  
+- Use environment variables (`import.meta.env`).  
+- Accessibility first (semantic HTML).  
+- Test with React Testing Library + Jest.  
+- Profile with React DevTools.  
+- Keep consistent structure: `components/`, `hooks/`, `pages/`.
+- Use **`interface`** for reusable prop definitions.
+- Type **`children`** explicitly (`ReactNode`).
+- Prefer **optional props** with `?` instead of `undefined`.
+- Extend built-in types for elements (`ButtonHTMLAttributes`, etc.).
+- Avoid using `any`. Use `unknown` or a specific type instead.
+- Define **custom hooks** with proper generic types.
