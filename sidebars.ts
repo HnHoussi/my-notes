@@ -6,9 +6,9 @@ const sidebars: SidebarsConfig = {
             type: 'category',
             label: 'Frontend',
             items: [
+                'frontend/typescript',
                 'frontend/react',
                 'frontend/nextjs',
-                'frontend/typescript',
                 'frontend/angularjs',
             ],
         },
@@ -40,7 +40,16 @@ const sidebars: SidebarsConfig = {
         },
         {
             type: 'category',
-            label: 'Github guide',
+            label: 'Testing',
+            items: [
+                'test/test-types',
+                'test/test-frontend',
+                'test/test-backend',
+            ]
+        },
+        {
+            type: 'category',
+            label: 'Github',
             items: [
                 'github/work-in-group',
                 'github/useful-commands',
@@ -54,7 +63,14 @@ const sidebars: SidebarsConfig = {
                 'projects/cv-ai-assistant',
             ],
         },
+        {
+            type: 'category',
+            label: 'Internship',
+            items: ['internship/internship-stack']
+        },
+
     ],
+
 };
 
 export default sidebars;
