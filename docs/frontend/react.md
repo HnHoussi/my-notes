@@ -525,22 +525,17 @@ const ThemeContext = createContext<Theme>({ color: "blue" });
 :::note
 - Keep components small & focused.  
 - Prefer functional components + hooks.  
-- Always use unique keys in lists.  
 - Use `React.StrictMode` in dev.  
 - Avoid prop drilling → use Context.  
 - Memoize computations → `useMemo`, `useCallback`.  
 - Lazy load routes/components → `React.lazy` + `Suspense`.  
-- Use Error Boundaries.  
 - Separate UI & logic → use custom hooks.  
 - Use environment variables (`import.meta.env`).  
 - Accessibility first (semantic HTML).  
-- Test with React Testing Library + Jest.  
 - Profile with React DevTools.  
 - Keep consistent structure: `components/`, `hooks/`, `pages/`.
-- Use **`interface`** for reusable prop definitions.
-- Type **`children`** explicitly (`ReactNode`).
-- Prefer **optional props** with `?` instead of `undefined`.
+- Use `interface` for reusable prop definitions.
+- Type `children` explicitly (`ReactNode`).
 - Extend built-in types for elements (`ButtonHTMLAttributes`, etc.).
-- Avoid using `any`. Use `unknown` or a specific type instead.
 - Define **custom hooks** with proper generic types.
 :::
